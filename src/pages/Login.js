@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './Login.css';
 
 class Login extends Component {
     render() {
@@ -31,7 +32,7 @@ class Login extends Component {
                                 </div>
                                 <div className="col-md-6">
                                     <p className="lead">Not a registered yet? Click below</p>
-                                    <Link to="/register"><button className="btn btn-info btn-block">Register</button></Link>
+                                    <Link to="/register" className="link-btn"><button className="btn btn-info btn-block">Register</button></Link>
                                 </div>
                             </div>
                         </div>
