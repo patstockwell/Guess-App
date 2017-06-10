@@ -1,9 +1,25 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './Login.css';
 
 class Login extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            gameCount : 0
+        };
+    }
+
     render() {
+        axios.get('http://localhost:8080/game/count')
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
         return (
             <div className="container">
                 <div className="modal-dialog">

@@ -1,6 +1,23 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class Register extends Component {
+
+    registerNewPlayer(name, password) {
+        axios.get('http://localhost:8080/player/register', {
+            params: {
+                name: name,
+                password: password
+            }
+        })
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+
     render() {
         return (
             <div className="container">
