@@ -1,55 +1,61 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Modal from './components/Modal';
+import { Redirect } from 'react-router';
 
 class Register extends Component {
 
-    registerNewPlayer(name, password) {
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            password: '',
+            submitted: false
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
         axios.get('http://localhost:8080/player/register', {
             params: {
-                name: name,
-                password: password
+                name: this.state.name,
+                password: this.state.password
             }
-        })
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
         });
+        this.setState({submitted: true});
     }
 
     render() {
         return (
-            <div className="container">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h4 className="modal-title">Register</h4>
-                        </div>
-                        <div className="modal-body">
-                            <div className="row">
-                                <div className="col-md-3"></div>
-                                <div className="col-md-6">
-                                    <div className="well">
-                                        <form method="post" className="form">
-                                            <p>
-                                                <label>Username</label>
-                                                <input type="text" className="form-control" name="name" required="required"/>
-                                            </p>
-                                            <p>
-                                                <label>Password</label>
-                                                <input type="password" className="form-control" name="password" required="required"/>
-                                            </p>
-                                            <p>
-                                                <input type="submit" value="Register" className="btn btn-success btn-block"/>
-                                            </p>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div>
+                <Modal title='Register'>
+                    <div className="col-md-6 offset-md-3">
+                        <form className="form" onSubmit={this.handleSubmit}>
+                            <p>
+                                <label>Username</label>
+                                <input type="text" className="form-control" value={this.state.name} name="name" required="required" onChange={this.handleChange}/>
+                            </p>
+                            <p>
+                                <label>Password</label>
+                                <input type="password" className="form-control" value={this.state.password} name="password" required="required" onChange={this.handleChange}/>
+                            </p>
+                            <p>
+                                <input type="submit" value="Register" className="btn btn-success btn-block"/>
+                            </p>
+                        </form>
                     </div>
-                </div>
+                </Modal>
+                {this.state.submitted && (
+                    <Redirect to="/login" success="true"/>
+                )}
             </div>
         );
     }
