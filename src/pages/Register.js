@@ -54,7 +54,7 @@ class Register extends Component {
                     </div>
                 </Modal>
                 {this.state.submitted && (
-                    <Redirect to="/login" success="true"/>
+                    <Redirect to={{pathname: "/login", justRegistered:"true"}}/>
                 )}
             </div>
         );
