@@ -14,7 +14,7 @@ class Login extends Component {
     render() {
         return (
             <div className="container">
-                {this.props.location.justRegistered && (<div className="alert alert-info" role="alert">Success! Login below with your new details</div>)}
+                {this.props.location.justRegistered && (<div className="alert alert-info" role="alert">Success! Account created, login below</div>)}
                 <Modal title='Login'>
                     <div className="col-md-6">
                         <form method="post" className="form">
