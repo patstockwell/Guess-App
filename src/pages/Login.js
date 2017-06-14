@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css';
 import Modal from './components/Modal'
+import Auth from './components/Auth'
 
 class Login extends Component {
 
     constructor(props) {
-        console.log(props);
         super(props);
         this.state = {};
     }
