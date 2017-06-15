@@ -23,13 +23,13 @@ class AuthStore extends EventEmitter {
             name: '',
             id: -1
         }
+        this.emit('change')
     }
 
     loggedIn() {
-        return (this.data.id === -1 ? false : true);
+        return (this.data.id === -1 ? false : true)
     }
 }
 
-const auth = new AuthStore();
-
-export default auth;
+const auth = new AuthStore()
+export default auth
