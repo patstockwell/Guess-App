@@ -10,6 +10,8 @@ class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            name: '',
+            password: '',
             data: AuthStore.getLogin()
         }
         this.handleChange = this.handleChange.bind(this)
@@ -30,7 +32,7 @@ class Login extends Component {
                 name: this.state.name,
                 password: this.state.password
             }
-        }).then(reply => console.log(reply))
+        }).then(reply => this.handleReply(reply))
     }
 
     handleReply(reply) {
