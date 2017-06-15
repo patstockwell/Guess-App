@@ -14,9 +14,26 @@ class Login extends Component {
             password: '',
             data: AuthStore.getLogin()
         }
+        this.updateLogin = this.updateLogin.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleReply = this.handleReply.bind(this)
+    }
+
+    componentWillMount() {
+        AuthStore.on('change', this.updateLogin)
+    }
+
+    componentWillUnmount() {
+        AuthStore.removeListener('change', this.updateLogin)
+    }
+
+    updateLogin() {
+        this.setState({
+            name: '',
+            password: '',
+            data: AuthStore.getLogin()
+        })
     }
 
     handleChange(event) {
