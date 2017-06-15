@@ -1,28 +1,29 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 import {
     BrowserRouter as Router,
     Route,
     Redirect
-} from 'react-router-dom';
+} from 'react-router-dom'
 
-import Nav from './pages/components/Nav';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Register from './pages/Register.js';
+import Nav from './pages/components/Nav'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import Register from './pages/Register.js'
+import AuthStore from './pages/stores/AuthStore'
 
 
 class App extends Component {
 
     constructor() {
-        super();
+        super()
         this.state = {
             loggedIn: false
         }
     }
 
     loggedIn() {
-        return false;
+        return AuthStore.loggedIn();
     }
 
     render() {
@@ -48,4 +49,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default App
