@@ -11,6 +11,7 @@ class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            justRegistered: this.props.location.justRegistered,
             name: '',
             password: '',
             data: AuthStore.getLogin()
@@ -19,6 +20,13 @@ class Login extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleReply = this.handleReply.bind(this)
+        this.closeSuccessMessage = this.closeSuccessMessage.bind(this)
+    }
+
+    closeSuccessMessage() {
+        this.setState({
+            justRegistered: false
+        })
     }
 
     componentWillMount() {
@@ -61,7 +69,12 @@ class Login extends Component {
     render() {
         return (
             <div className="container">
-                {this.props.location.justRegistered && (<div className="alert alert-info" role="alert">Success! Account created, login below</div>)}
+                {this.state.justRegistered && (
+                    <div>
+                        <div className="alert alert-info" role="alert">Success! Account created, login below</div>
+                        <span className="close-cross"><a onClick={this.closeSuccessMessage}>×</a></span>
+                    </div>
+                )}
                 <Modal title='Login'>
                     <div className="col-md-6">
                         <form onSubmit={this.handleSubmit} className="form">
