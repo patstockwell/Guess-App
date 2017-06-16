@@ -1,3 +1,8 @@
 .btn {
     cursor: pointer;
 }
+
+.close-cross {
+    float: right;
+    cursor: pointer;
+}
