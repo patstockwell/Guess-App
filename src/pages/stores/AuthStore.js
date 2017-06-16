@@ -12,6 +12,7 @@ class AuthStore extends EventEmitter {
 
     login(newData) {
         this.data = newData
+        this.emit('change')
     }
 
     getLogin() {

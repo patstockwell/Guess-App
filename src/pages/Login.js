@@ -4,6 +4,7 @@ import './Login.css'
 import Modal from './components/Modal'
 import AuthStore from './stores/AuthStore'
 import axios from 'axios'
+import { Redirect } from 'react-router'
 
 class Login extends Component {
 
@@ -32,7 +33,8 @@ class Login extends Component {
         this.setState({
             name: '',
             password: '',
-            data: AuthStore.getLogin()
+            data: AuthStore.getLogin(),
+            loggedIn: AuthStore.loggedIn()
         })
     }
 
@@ -57,7 +59,6 @@ class Login extends Component {
     }
 
     render() {
-        console.log(this.state.data)
         return (
             <div className="container">
                 {this.props.location.justRegistered && (<div className="alert alert-info" role="alert">Success! Account created, login below</div>)}
@@ -82,6 +83,9 @@ class Login extends Component {
                         <Link to="/register" className="link-btn"><button className="btn btn-info btn-block">Register</button></Link>
                     </div>
                 </Modal>
+                {this.state.loggedIn && (
+                    <Redirect push to={{pathname: "/", justRegistered:"true", name: this.state.data.name}}/>
+                )}
             </div>
         );
     }

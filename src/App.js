@@ -34,7 +34,7 @@ class App extends Component {
                         <Nav />
                         <Route exact path="/" render={() => (
                                 this.loggedIn() ? (
-                                    <Home />
+                                    <Route component={Home} />
                                 ) : (
                                     <Redirect to="/login"/>
                                 )
