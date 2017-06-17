@@ -6,3 +6,7 @@
     float: right;
     cursor: pointer;
 }
+
+.alert {
+    margin-bottom: 20px;
+}
