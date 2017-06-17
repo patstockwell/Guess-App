@@ -1,0 +1,12 @@
+.green {
+    color: #2CBC4D;
+}
+
+.red {
+    color: red;
+}
+
+.matchup {
+    display: inline-block;
+    vertical-align: bottom;
+}

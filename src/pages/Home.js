@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import AuthStore from './stores/AuthStore'
 import { Redirect } from 'react-router'
+import Rules from './components/Rules'
 
 class Home extends Component {
 
@@ -45,13 +46,20 @@ class Home extends Component {
                             <span className="close-cross"><a onClick={this.closeWelcomeMessage}>×</a></span>
                         </div>
                 )}
-                <h1>Home</h1>
-                {this.state.data.name && (
-                    <p className="current-player">Current Player: <span id="login">{this.state.data.name}</span></p>
-                )}
-                {!this.state.loggedIn && (
-                    <Redirect push to={{pathname: "/login"}}/>
-                )}
+                <div className="row">
+                    <div className="col-md-8">
+                        <h1>Home</h1>
+                        {this.state.data.name && (
+                            <p className="current-player">Current Player: <span id="login">{this.state.data.name}</span></p>
+                        )}
+                        {!this.state.loggedIn && (
+                            <Redirect push to={{pathname: "/login"}}/>
+                        )}
+                    </div>
+                    <div className="col-md-4">
+                        <Rules></Rules>
+                    </div>
+                </div>
             </div>
         );
     }
