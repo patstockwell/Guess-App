@@ -1,3 +1,19 @@
 .home-heading {
     text-decoration: underline;
+    display: inline-block;
+    font-size: 150%;
+}
+
+.login-logout {
+    float: right;
+    margin-left: 20px;
+}
+
+nav {
+    margin-bottom: 15px;
+}
+
+.current-player {
+    font-size: 80%;
+    margin-bottom: 0;
 }
