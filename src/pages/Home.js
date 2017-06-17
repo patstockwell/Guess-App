@@ -8,15 +8,17 @@ class Home extends Component {
         super(props)
         this.state = {
             justRegistered: this.props.location.justRegistered,
-            loggedIn: true
+            loggedIn: true,
+            data: AuthStore.getLogin()
         }
-        this.logout = this.logout.bind(this)
+        this.updateLogin = this.updateLogin.bind(this)
         this.closeWelcomeMessage = this.closeWelcomeMessage.bind(this)
     }
 
-    logout() {
+    updateLogin() {
         this.setState({
-            loggedIn: false
+            loggedIn: AuthStore.loggedIn(),
+            data: AuthStore.getLogin()
         })
     }
 
@@ -27,11 +29,11 @@ class Home extends Component {
     }
 
     componentWillMount() {
-        AuthStore.on('change', this.logout)
+        AuthStore.on('change', this.updateLogin)
     }
 
     componentWillUnmount() {
-        AuthStore.removeListener('change', this.logout)
+        AuthStore.removeListener('change', this.updateLogin)
     }
 
     render() {
@@ -44,6 +46,9 @@ class Home extends Component {
                         </div>
                 )}
                 <h1>Home</h1>
+                {this.state.data.name && (
+                    <p className="current-player">Current Player: <span id="login">{this.state.data.name}</span></p>
+                )}
                 {!this.state.loggedIn && (
                     <Redirect push to={{pathname: "/login"}}/>
                 )}
