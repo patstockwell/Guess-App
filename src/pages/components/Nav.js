@@ -9,7 +9,6 @@ class Nav extends Component {
         super(props)
         this.state = {
             loggedIn: AuthStore.loggedIn(),
-            data: AuthStore.getLogin()
         }
         this.updateLogin = this.updateLogin.bind(this)
     }
@@ -21,7 +20,6 @@ class Nav extends Component {
     updateLogin() {
         this.setState({
             loggedIn: AuthStore.loggedIn(),
-            data: AuthStore.getLogin()
         })
     }
 
@@ -43,9 +41,6 @@ class Nav extends Component {
                             <button type="button" className="btn btn-success" onClick={this.logout}>Logout</button>
                         )}
                     </div>
-                    {this.state.data.name && (
-                        <p className="current-player">Current Player: <span id="login">{this.state.data.name}</span></p>
-                    )}
                 </div>
             </nav>
         );

@@ -12,6 +12,7 @@ class Login extends Component {
         super(props)
         this.state = {
             justRegistered: this.props.location.justRegistered,
+            incorrectPassword: false,
             name: '',
             password: '',
             data: AuthStore.getLogin()
@@ -21,11 +22,18 @@ class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleReply = this.handleReply.bind(this)
         this.closeSuccessMessage = this.closeSuccessMessage.bind(this)
+        this.closePasswordMessage = this.closePasswordMessage.bind(this)
     }
 
     closeSuccessMessage() {
         this.setState({
             justRegistered: false
+        })
+    }
+
+    closePasswordMessage() {
+        this.setState({
+            incorrectPassword: false
         })
     }
 
@@ -42,7 +50,8 @@ class Login extends Component {
             name: '',
             password: '',
             data: AuthStore.getLogin(),
-            loggedIn: AuthStore.loggedIn()
+            loggedIn: AuthStore.loggedIn(),
+            incorrectPassword: false
         })
     }
 
@@ -64,17 +73,31 @@ class Login extends Component {
 
     handleReply(reply) {
         AuthStore.login(reply.data)
+        if(reply.data.id === -1) {
+            this.setState({
+                incorrectPassword: true
+            })
+        }
     }
 
     render() {
         return (
             <div className="container">
+
+                {this.state.incorrectPassword && (
+                    <div className="alert alert-danger" role="alert">
+                        Incorrect password, try again.
+                        <span className="close-cross"><a onClick={this.closePasswordMessage}>×</a></span>
+                    </div>
+                )}
+
                 {this.state.justRegistered && (
                     <div className="alert alert-info" role="alert">
                         Success! Account created, login below
                         <span className="close-cross"><a onClick={this.closeSuccessMessage}>×</a></span>
                     </div>
                 )}
+
                 <Modal title='Login'>
                     <div className="col-md-6">
                         <form onSubmit={this.handleSubmit} className="form">
