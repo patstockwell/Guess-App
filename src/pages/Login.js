@@ -70,8 +70,8 @@ class Login extends Component {
         return (
             <div className="container">
                 {this.state.justRegistered && (
-                    <div>
-                        <div className="alert alert-info" role="alert">Success! Account created, login below</div>
+                    <div className="alert alert-info" role="alert">
+                        Success! Account created, login below
                         <span className="close-cross"><a onClick={this.closeSuccessMessage}>×</a></span>
                     </div>
                 )}

@@ -38,10 +38,10 @@ class Home extends Component {
         return (
             <div className="container">
                 {this.state.justRegistered && (
-                    <div>
-                        <div className="alert alert-success" role="alert">Hi {this.props.location.name}, Welcome to the guessing game.</div>
-                        <span className="close-cross"><a onClick={this.closeWelcomeMessage}>×</a></span>
-                    </div>
+                        <div className="alert alert-success" role="alert">
+                            Hi {this.props.location.name}, Welcome to the guessing game.
+                            <span className="close-cross"><a onClick={this.closeWelcomeMessage}>×</a></span>
+                        </div>
                 )}
                 <h1>Home</h1>
                 {!this.state.loggedIn && (
